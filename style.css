@@ -1,0 +1,277 @@
+/* General body styling - No changes needed from previous version */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6; /* Light, neutral background */
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased; /* Smoother fonts */
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Main container for the app - Minor shadow enhancement */
+.container {
+    background-color: #ffffff;
+    padding: 35px; /* Slightly more padding */
+    border-radius: 12px; /* Slightly more rounded corners */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Softer, more diffused shadow */
+    width: 100%;
+    max-width: 850px; /* Slightly wider max-width */
+}
+
+h1 {
+    color: #2c3e50; /* Dark blue-grey */
+    text-align: center;
+    margin-bottom: 35px; /* More space below title */
+    font-weight: 600; /* Slightly bolder */
+}
+
+/* Input area styling - Enhanced focus and button feedback */
+.input-area {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 35px;
+    align-items: center;
+}
+
+#todo-input, #todo-date-flatpickr { /* Apply to both input and flatpickr */
+    flex-grow: 1;
+    padding: 14px; /* More padding */
+    border: 2px solid #dfe6e9;
+    border-radius: 8px; /* More rounded */
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+#todo-input:focus, #todo-date-flatpickr:focus, #todo-date-flatpickr.flatpickr-input:focus { /* Target Flatpickr's own focus too */
+    outline: none;
+    border-color: #3498db; /* Brighter blue for focus */
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.4); /* More prominent shadow */
+}
+
+/* Styling for Flatpickr input specifically if needed */
+#todo-date-flatpickr {
+    min-width: 180px; /* Ensure date input is adequately sized */
+    flex-grow: 0.5; /* Don't let it grow as much as the task input */
+}
+
+
+#add-task-btn {
+    background-color: #3498db; /* Primary blue */
+    color: white;
+    border: none;
+    padding: 14px 25px; /* More padding */
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500; /* Medium weight */
+    transition: background-color 0.2s ease, transform 0.2s ease; /* Added transform transition */
+}
+
+#add-task-btn:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+#add-task-btn:active {
+    transform: translateY(0px); /* Button press effect */
+    background-color: #2575ab;
+}
+
+
+/* Content area layout - No changes needed */
+.content-area {
+    display: flex;
+    gap: 30px;
+}
+
+.todo-list-section {
+    flex-grow: 1;
+}
+
+.calendar-section {
+    width: 320px; /* Slightly wider for a better calendar view */
+    padding-left: 25px;
+    border-left: 1px solid #e0e0e0; /* Lighter separator */
+}
+
+h2 {
+    color: #34495e; /* Dark grey-blue */
+    border-bottom: 2px solid #ecf0f1; /* Light grey underline */
+    padding-bottom: 12px;
+    margin-top: 0;
+    margin-bottom: 20px; /* Space below heading */
+    font-weight: 500;
+}
+
+/* Styling for the to-do list - Enhanced item styling and transitions */
+#todo-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#todo-list li {
+    background-color: #f9f9f9; /* Lighter item background */
+    padding: 15px; /* More padding */
+    margin-bottom: 12px; /* More space between items */
+    border-radius: 8px; /* More rounded corners */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #e0e0e0; /* Subtle border */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow for depth */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transitions */
+    opacity: 1; /* Start fully visible */
+    /* transform: scale(1); For add/remove, JS will handle initial state */
+}
+
+#todo-list li.added { /* Animation for adding */
+    animation: fadeInScale 0.3s ease-out;
+}
+
+#todo-list li.removing { /* Animation for removing */
+    animation: fadeOutScale 0.3s ease-in forwards;
+}
+
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes fadeOutScale {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.95) translateX(-20px);
+        margin-bottom: 0; /* Collapse margin */
+        padding-top: 0;
+        padding-bottom: 0;
+        height: 0; /* Collapse height */
+        border: 0;
+    }
+}
+
+
+#todo-list li:hover {
+    background-color: #ffffff; /* Brighter on hover */
+    transform: translateY(-2px); /* Lift effect */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* Enhanced shadow on hover */
+}
+
+#todo-list li.completed {
+    background-color: #e8f5e9; /* Light green for completed */
+    text-decoration: line-through;
+    color: #757575; /* Greyed out text */
+    box-shadow: none; /* Flat when completed */
+}
+
+#todo-list li.completed:hover {
+    background-color: #e0f0e2;
+}
+
+/* Styling for task text and date */
+#todo-list li span:first-child { /* The task text itself */
+    flex-grow: 1;
+    margin-right: 10px; /* Space before date/buttons */
+}
+#todo-list li span[style*="font-size: 0.9em"] { /* The date span */
+    color: #777; /* Slightly muted date color */
+    white-space: nowrap; /* Prevent date from wrapping */
+}
+
+
+/* Calendar container and Flatpickr specific styles */
+#calendar-container-flatpickr {
+    background-color: transparent; /* Remove previous background */
+    padding: 0; /* Remove previous padding */
+    border-radius: 8px;
+    min-height: auto; /* Remove previous min-height */
+    border: none; /* Remove placeholder border */
+}
+
+/* Flatpickr calendar theme adjustments (optional, Flatpickr's default is good) */
+.flatpickr-calendar {
+    border-radius: 8px !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
+    border: 1px solid #ddd !important;
+    width: 100% !important; /* Make inline calendar full width of its container */
+}
+.flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange {
+    background: #3498db !important;
+    border-color: #3498db !important;
+}
+.flatpickr-day:hover {
+    background: #e0e0e0 !important;
+}
+
+
+/* Action buttons within todo items */
+.todo-actions button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px 8px; /* Adjusted padding */
+    margin-left: 8px;
+    font-size: 20px; /* Slightly larger icons */
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.todo-actions .complete-btn {
+    color: #27ae60; /* Green for complete */
+}
+.todo-actions .complete-btn:hover {
+    color: #229954; /* Darker green */
+    transform: scale(1.1);
+}
+
+.todo-actions .delete-btn {
+    color: #c0392b; /* Red for delete */
+}
+.todo-actions .delete-btn:hover {
+    color: #a93226; /* Darker red */
+    transform: scale(1.1);
+}
+
+/* Responsive adjustments - already good, minor tweaks if any */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    .content-area {
+        flex-direction: column;
+    }
+    .calendar-section {
+        width: 100%;
+        padding-left: 0;
+        border-left: none;
+        margin-top: 25px;
+        border-top: 1px solid #e0e0e0;
+    }
+    .input-area {
+        flex-direction: column;
+        gap:15px;
+    }
+    #todo-input, #todo-date-flatpickr, #add-task-btn { /* Apply to Flatpickr input as well */
+        width: 100%;
+        box-sizing: border-box;
+    }
+    #todo-date-flatpickr {
+        min-width: 0; /* Allow it to shrink */
+    }
+}

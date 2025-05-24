@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleek To-Do List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> <!-- Added Flatpickr CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>My To-Do List</h1>
+
+        <div class="input-area">
+            <input type="text" id="todo-input" placeholder="Add a new task...">
+            <input type="text" id="todo-date-flatpickr" placeholder="Select date..."> <!-- Changed type to text for Flatpickr -->
+            <button id="add-task-btn">Add Task</button>
+        </div>
+
+        <div class="content-area">
+            <div class="todo-list-section">
+                <h2>Tasks</h2>
+                <ul id="todo-list">
+                    <!-- To-do items will be dynamically added here -->
+                </ul>
+            </div>
+
+            <div class="calendar-section">
+                <h2>Calendar</h2>
+                <div id="calendar-container-flatpickr">
+                    <!-- Flatpickr inline calendar will be rendered here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> <!-- Added Flatpickr JS -->
+    <script src="script.js"></script>
+</body>
+</html>
